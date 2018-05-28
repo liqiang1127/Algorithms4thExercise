@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Arrays;
 
 public class TwoSumFast {
-    //twoSum的快速实现版
+    //twoSum的快速实现版 O(NlgN)
     //但是要求数组不能含有重复元素!!
     public static int count(int[] a){
         int cnt = 0;

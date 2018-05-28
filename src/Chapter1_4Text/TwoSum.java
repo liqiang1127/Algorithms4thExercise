@@ -1,7 +1,7 @@
 package Chapter1_4Text;
 
 public class TwoSum {
-    //暴力解法
+    //暴力解法 O(N^2)
     public static int count(int[] a){
         int count = 0;
         int n = a.length;

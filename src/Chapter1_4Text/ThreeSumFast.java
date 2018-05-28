@@ -3,7 +3,7 @@ package Chapter1_4Text;
 import Chapter1_1Text.BinarySearch;
 
 public class ThreeSumFast {
-//    public static int
+    //基于BinarySearch的实现 O(N^2lgN)
     public static int count(int[] a){
         int count = 0;
         int n = a.length;
