@@ -7,12 +7,17 @@ import java.util.Arrays;
 
 public class TwoSumFast {
     //twoSum的快速实现版 O(NlgN)
-    //但是要求数组不能含有重复元素!!
+    // 有些情况是不行的 -10 -9 -8 -8 -4 0 3 7 9 9
+    // -1 0 0 2
     public static int count(int[] a){
         int cnt = 0;
         Arrays.sort(a);
         //利用二分查找
         int n = a.length;
+        for (int i = 0; i < n ; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println();
         for (int i = 0; i < n ; i++) {
             if(BinarySearch.rank(-a[i],a) > i)
                 cnt++;
@@ -26,6 +31,7 @@ public class TwoSumFast {
         for (int i = 0; i < n; i++) {
             arr1[i] = StdRandom.uniform(-n, n);
         }
+
 
         int[] arr2 = arr1.clone();
 
