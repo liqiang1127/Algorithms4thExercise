@@ -27,7 +27,7 @@ public class LocalMinimum {
     }
 
     public static void main(String[] args) {
-        int[] arr = {4,3,2,1,4};
+        int[] arr = {4,2,5,6,4,8};
         System.out.println(arr[LMIndex(arr)]);
     }
 }
