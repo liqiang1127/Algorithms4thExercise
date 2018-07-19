@@ -20,7 +20,8 @@ public class MihaiPatrascu {
         //找到合适的fib数
         for ( ; pos < fib.length; pos++) {
             fib[pos] = fib[pos-1] + fib[pos-2];
-            if(fib[pos] >= arr.length)
+            //这里一定要大于 不能等于 保证[l,r]中的元素数目比fib[pos]小！
+            if(fib[pos] > arr.length)
                 break;
         }
 
@@ -40,14 +41,7 @@ public class MihaiPatrascu {
         int l = 0;
         int r = fib[pos] - 1;
 
-        while ( l <= r ){
-            //处理边界
-            //最后区间为1 即 l == r的时候， pos-1可能越界。
-            if(l == r && fibArr[l] == target)
-                return l;
-            else if(l == r && fibArr[l] != target)
-                break;
-
+        while ( l <= r && pos >= 1){
             //寻找mid
             int mid = l + fib[pos-1] - 1;
             if(fibArr[mid] == target){
@@ -56,9 +50,9 @@ public class MihaiPatrascu {
                 else
                     return n - 1;
             }
-
             if(fibArr[mid] > target ){
-                r = mid;
+                //这里要-1 保持[l,r]中的数量 比 fib[pos]小！！
+                r = mid - 1;
                 pos -= 1;
             }else{
                 l = mid + 1;
@@ -74,6 +68,6 @@ public class MihaiPatrascu {
 //        for (int i = 0; i < arr.length ; i++) {
 //            System.out.println(fibSearch(arr,i));
 //        }
-        System.out.println(fibSearch(arr,0));
+        System.out.println(fibSearch(arr,5));
     }
 }
