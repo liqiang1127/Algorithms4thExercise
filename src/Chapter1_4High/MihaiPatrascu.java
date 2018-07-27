@@ -42,7 +42,7 @@ public class MihaiPatrascu {
         int r = fib[pos] - 1;
 
         while ( l <= r && pos >= 1){
-            //寻找mid
+            //寻找mid [l...mid] 正好是fib[pos-1]的大小
             int mid = l + fib[pos-1] - 1;
             if(fibArr[mid] == target){
                 if(mid < n)
@@ -52,6 +52,7 @@ public class MihaiPatrascu {
             }
             if(fibArr[mid] > target ){
                 //这里要-1 保持[l,r]中的数量 比 fib[pos]小！！
+                //如果等于的话 [l...r]中元素个数等于fib[pos-1]
                 r = mid - 1;
                 pos -= 1;
             }else{
