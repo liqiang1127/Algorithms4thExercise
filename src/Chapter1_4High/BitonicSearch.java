@@ -9,9 +9,9 @@ public class BitonicSearch {
         if(arr[max_index] == target)
             return max_index;
         int iUP = binarySearchUP(arr,0,max_index,target);
-        int iDOWN = binarySearchDown(arr, max_index+1, arr.length, target);
         if(iUP != -1)
             return iUP;
+        int iDOWN = binarySearchDown(arr, max_index+1, arr.length, target);
         if(iDOWN != -1)
             return iDOWN;
         return -1;
