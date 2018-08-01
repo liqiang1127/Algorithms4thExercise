@@ -1,50 +1,49 @@
-package Chapter1_5Text;
+package Chapter1_5High;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class WeightedQuickUnionUF {
-    //optimized on size
+public class QuickUnionCompressPath {
+    // 1.5.12
     private int[] parent;
-    // size of the tree which root is index
-    private int[] sz;
     private int count;
 
-    public WeightedQuickUnionUF(int N){
+    public QuickUnionCompressPath(int N){
         parent = new int[N];
-        sz = new int[N];
-        for (int i=0; i<N; i++){
+        for (int i = 0; i < N; i++) {
             parent[i] = i;
-            sz[i] = 1;
         }
         count = N;
     }
 
+    // anther version of compression path
     private int find(int p){
-        while ( p != parent[p])
-            p = parent[p];
-        return p;
+        int root = p;
+        //find the root
+        while( root != parent[root])
+            root = parent[root];
+
+        //compression path
+        while ( p != parent[p]){
+            // pp means p's parent
+            int pp = parent[p];
+            parent[p] = root;
+            p = pp;
+        }
+        return root;
     }
 
     public void union(int p, int q){
+        //Quick Union
         int pRoot = find(p);
         int qRoot = find(q);
 
-        if(pRoot == qRoot)
+        if( pRoot == qRoot)
             return;
 
-        if(sz[pRoot] < sz[qRoot]){
-            //append to larger tree
-            //append to j-tree
-            parent[pRoot] = qRoot;
-            sz[qRoot] += sz[pRoot];
-        }else{
-            parent[qRoot] = pRoot;
-            sz[pRoot] += sz[qRoot];
-        }
+        parent[pRoot] = qRoot;
         count--;
     }
-
 
     public boolean connected(int p, int q){
         return find(p) == find(q);
@@ -54,9 +53,10 @@ public class WeightedQuickUnionUF {
         return count;
     }
 
+
     public static void main(String[] args) {
         int N = StdIn.readInt();
-        WeightedQuickUnionUF uf = new WeightedQuickUnionUF(N);
+        QuickUnionCompressPath uf = new QuickUnionCompressPath(N);
         while (!StdIn.isEmpty()){
             int p = StdIn.readInt();
             int q = StdIn.readInt();
