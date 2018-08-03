@@ -5,18 +5,18 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class UFQuickUnion {
-    private int[] id;
+    private int[] parent;
     private int count;
 
     public UFQuickUnion(int N){
-        id = new int[N];
+        parent = new int[N];
         count = N;
     }
 
     //root is itself
     private int find(int p){
-        while( p != id[p])
-            p = id[p];
+        while( p != parent[p])
+            p = parent[p];
         return p;
     }
 
@@ -26,8 +26,8 @@ public class UFQuickUnion {
 
         if(pRoot == qRoot)
             return;
-        id[pRoot] =  qRoot;
-//        id[qRoot] = pRoot;
+        parent[pRoot] =  qRoot;
+//        parent[qRoot] = pRoot;
         count--;
     }
 

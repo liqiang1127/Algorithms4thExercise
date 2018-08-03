@@ -5,37 +5,37 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class QuickFindShowID {
     // quick find
-    private int[] id;
+    private int[] root;
     private int count;
 
     public QuickFindShowID(int N){
-        id = new int[N];
+        root = new int[N];
         for (int i = 0; i < N; i++) {
-            id[i] = i;
+            root[i] = i;
         }
         count = N;
     }
 
 
     private int find(int p){
-        return id[p];
+        return root[p];
     }
 
     public void union(int p, int q){
-        int pID = find(p);
-        int qID = find(q);
+        int proot = find(p);
+        int qroot = find(q);
 
-        if( pID == qID){
-            printArr(id);
+        if( proot == qroot){
+            printArr(root);
             return;
         }
 
-        for (int i = 0; i < id.length ; i++) {
-            if(id[i] == pID)
-                id[i] = qID;
+        for (int i = 0; i < root.length ; i++) {
+            if(root[i] == proot)
+                root[i] = qroot;
         }
         count--;
-        printArr(id);
+        printArr(root);
     }
 
 
@@ -48,7 +48,7 @@ public class QuickFindShowID {
     }
 
     private void printArr(int[] arr){
-        StdOut.print("id: ");
+        StdOut.print("root: ");
         for (int i = 0; i < arr.length; i++) {
             StdOut.print(arr[i]+ " ");
         }
